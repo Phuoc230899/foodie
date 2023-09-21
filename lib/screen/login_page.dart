@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:food_app/screen/forgot_pass.dart';
+import 'package:food_app/screen/register.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -12,6 +13,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final bool _isLoading = false;
   final Widget _forgotPass = ForgotPage();
+  final Widget _register = RegisterPage();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -183,12 +185,17 @@ class _LoginPageState extends State<LoginPage> {
                           Align(
                             alignment: Alignment.bottomCenter,
                             child: InkWell(
-                                onTap: () {},
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => _register));
+                                },
                                 child: const Text(
                                   'Tạo Tài Khoản Mới',
                                   style: TextStyle(
                                       fontFamily: 'Josefin',
-                                      fontSize: 15,
+                                      fontSize: 20,
                                       color: Colors.white,
                                       fontStyle: FontStyle.italic,
                                       decoration: TextDecoration.underline),
