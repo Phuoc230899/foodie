@@ -155,7 +155,7 @@ class _LoginPageState extends State<LoginPage> {
                                 onPressed: () {},
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor:
-                                      Color.fromARGB(255, 86, 99, 255),
+                                      const Color.fromARGB(255, 86, 99, 255),
                                 ),
                                 child: _isLoading
                                     ? Container(

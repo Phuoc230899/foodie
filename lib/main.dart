@@ -3,6 +3,7 @@ import 'package:avatar_stack/positions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_app/home.dart';
+import 'package:food_app/screen/filter_page.dart';
 import 'package:food_app/screen/login_page.dart';
 import 'package:food_app/screen/register.dart';
 import 'package:food_app/screen/start.dart';
@@ -23,13 +24,10 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       builder: (context, child) {
         return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'Foodybite',
-          theme: ThemeData(
-            primarySwatch: Colors.red,
-          ),
-          home: const Home()
-        );
+            debugShowCheckedModeBanner: false,
+            title: 'Foodybite',
+            theme: ThemeData(primaryColor: Colors.white),
+            home: const Home());
       },
     );
   }
