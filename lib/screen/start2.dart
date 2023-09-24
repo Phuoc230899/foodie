@@ -40,7 +40,7 @@ class StartPage2 extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
-                          padding: EdgeInsets.only(right: 10.w),
+                          padding: EdgeInsets.only(right: 20.w,top: 20.h),
                           child: Align(
                             alignment: Alignment.centerRight,
                             child: Container(
