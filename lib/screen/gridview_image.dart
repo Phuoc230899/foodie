@@ -18,7 +18,6 @@ class _GridViewImageState extends State<GridViewImage> {
     // TODO: implement initState
     super.initState();
     images = widget.images;
-    print(images);
   }
 
   @override
@@ -27,7 +26,7 @@ class _GridViewImageState extends State<GridViewImage> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
-            children: [
+            children: <Widget>[
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -61,43 +60,41 @@ class _GridViewImageState extends State<GridViewImage> {
               SizedBox(
                 height: 20.h,
               ),
-              Column(
-                children: images.map((e) {
-                  return SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height,
-                    child: FittedGridView(
-                      maxItemDisplay: 5,
-                      itemCount: 5,
-                      itemBuilder: (context, index) {
-                          return Padding(
-                            padding: const EdgeInsets.all(4.0),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(15.0),
-                              child: Image.asset(
-                                e,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          );
-                      },
-                      remainingItemsOverlay: (remaining) {
-                        return Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: Container(
-                            color: Colors.grey.withOpacity(0.7),
-                            alignment: Alignment.center,
-                            child: Text(
-                              "+$remaining",
-                              style: const TextStyle(color: Colors.white),
-                            ),
+              Column(children: [
+                SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height,
+                  child: FittedGridView(
+                    maxItemDisplay: images.length,
+                    itemCount: images.length,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(15.0),
+                          child: Image.asset(
+                            images[index],
+                            fit: BoxFit.cover,
                           ),
-                        );
-                      },
-                    ),
-                  );
-                }).toList(),
-              )
+                        ),
+                      );
+                    },
+                    remainingItemsOverlay: (remaining) {
+                      return Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Container(
+                          color: Colors.grey.withOpacity(0.7),
+                          alignment: Alignment.center,
+                          child: Text(
+                            "+$remaining",
+                            style: const TextStyle(color: Colors.white),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                )
+              ]),
             ],
           ),
         ),
