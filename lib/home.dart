@@ -8,6 +8,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_app/model/shop.dart';
 import 'package:food_app/screen/filter_page.dart';
 import 'package:food_app/screen/list_shop.dart';
+import 'package:food_app/screen/shop_detail.dart';
 import 'package:food_app/widget/avatar.dart';
 import 'package:food_app/widget/clipper.dart';
 import 'package:food_app/widget/navbar_widget.dart';
@@ -148,10 +149,12 @@ class _HomeState extends State<Home> {
                   builder: (BuildContext context) {
                     return InkWell(
                       onTap: () {
-                        // Navigator.of(context)
-                        //     .push(MaterialPageRoute(builder: (context) {
-                        //   return const ShopDetailPage();
-                        // }));
+                        Navigator.of(context)
+                            .push(MaterialPageRoute(builder: (context) {
+                          return ShopPage(
+                            item: item,
+                          );
+                        }));
                       },
                       child: Card(
                         elevation: 5.0,

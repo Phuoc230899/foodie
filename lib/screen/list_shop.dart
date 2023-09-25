@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_app/home.dart';
 import 'package:food_app/model/shop.dart';
 import 'package:food_app/screen/filter_page.dart';
+import 'package:food_app/screen/shop_detail.dart';
 import 'package:food_app/widget/clipper.dart';
 
 class Shops extends StatefulWidget {
@@ -67,6 +68,8 @@ class _ShopsState extends State<Shops> {
                 SliverAppBar(
                   floating: true,
                   shadowColor: Colors.transparent,
+                  elevation: 0,
+                  automaticallyImplyLeading: false,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(
                         15.0), // Đặt độ cong của góc để tạo viền tròn
@@ -140,10 +143,10 @@ class _ShopsState extends State<Shops> {
                               builder: (BuildContext context) {
                                 return InkWell(
                                   onTap: () {
-                                    // Navigator.of(context)
-                                    //     .push(MaterialPageRoute(builder: (context) {
-                                    //   return const ShopDetailPage();
-                                    // }));
+                                    Navigator.of(context)
+                                        .push(MaterialPageRoute(builder: (context) {
+                                      return ShopPage(item: item,);
+                                    }));
                                   },
                                   child: Card(
                                     elevation: 5.0,

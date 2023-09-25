@@ -15,20 +15,20 @@ class _StartPageState extends State<StartPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: GestureDetector(
-          onHorizontalDragEnd: (details) {
-            // Kiểm tra xem người dùng vuốt qua bên phải (sang trái) hay bên trái (sang phải)
-            if (details.primaryVelocity! < 0) {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) {
-                    return const StartPage2();
-                  },
-                ),
-              );
-            }
-          },
-          child: Stack(
-              children: [
+      onHorizontalDragEnd: (details) {
+        // Kiểm tra xem người dùng vuốt qua bên phải (sang trái) hay bên trái (sang phải)
+        if (details.primaryVelocity! < 0) {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) {
+                return const StartPage2();
+              },
+            ),
+          );
+        }
+      },
+      child: Stack(
+        children: [
           Image.asset('assets/images/img_start.jpg',
               fit: BoxFit.cover,
               width: MediaQuery.of(context).size.width,
@@ -39,15 +39,19 @@ class _StartPageState extends State<StartPage> {
           IconButton(
               padding: EdgeInsets.only(top: 20.h, left: 310.w),
               onPressed: () {
-                Navigator.of(context).pop();
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) {
+                    return const StartPage2();
+                  },
+                ));
               },
               icon: const Icon(
                 Icons.navigate_next,
                 color: Colors.black,
                 size: 34,
               )),
-              ],
-            ),
-        ));
+        ],
+      ),
+    ));
   }
 }
