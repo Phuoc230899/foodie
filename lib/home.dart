@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_app/model/shop.dart';
 import 'package:food_app/screen/filter_page.dart';
+import 'package:food_app/screen/list_category.dart';
 import 'package:food_app/screen/list_shop.dart';
 import 'package:food_app/screen/shop_detail.dart';
 import 'package:food_app/widget/avatar.dart';
@@ -55,7 +56,7 @@ class _HomeState extends State<Home> {
                   textInputAction: TextInputAction.done,
                   onEditingComplete: () {},
                   style: const TextStyle(
-                      color: Colors.white,
+                      color: Colors.black,
                       fontSize: 15,
                       fontFamily: 'Josefin',
                       fontWeight: FontWeight.w500),
@@ -398,15 +399,21 @@ class _HomeState extends State<Home> {
                 SizedBox(
                   width: 170.w,
                 ),
-                const Align(
+                Align(
                   alignment: Alignment.centerRight,
-                  child: Text(
-                    'See all (9)',
-                    style: TextStyle(
-                        fontFamily: 'Josefin',
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.grey),
+                  child: InkWell(
+                    onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const ListCategory())),
+                    child: const Text(
+                      'See all (9)',
+                      style: TextStyle(
+                          fontFamily: 'Josefin',
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey),
+                    ),
                   ),
                 ),
               ],

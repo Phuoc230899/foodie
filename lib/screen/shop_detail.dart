@@ -2,7 +2,10 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_app/model/shop.dart';
+import 'package:food_app/model/user_comment.dart';
 import 'package:food_app/screen/gridview_image.dart';
+import 'package:food_app/screen/list_review_page.dart';
+import 'package:food_app/screen/review_page.dart';
 import 'package:food_app/widget/clipper.dart';
 
 class ShopPage extends StatefulWidget {
@@ -347,7 +350,13 @@ class _ShopPageState extends State<ShopPage> {
                           Align(
                             alignment: Alignment.centerRight,
                             child: InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const ListReview()));
+                              },
                               child: const Text(
                                 'See all (45)',
                                 style: TextStyle(
@@ -367,320 +376,127 @@ class _ShopPageState extends State<ShopPage> {
                         padding: EdgeInsets.only(left: 10.w),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
-                                Expanded(
-                                  flex: 0,
-                                  child: ClipOval(
-                                      child: Image.asset(
-                                    'assets/images/avatar1.png',
-                                    fit: BoxFit.cover,
-                                    width: 30.w,
-                                    height: 30.h,
-                                  )),
-                                ),
-                                Expanded(
-                                  flex: 4,
-                                  child: Padding(
-                                    padding: EdgeInsets.only(left: 10.w),
-                                    child: Column(
-                                      children: [
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          children: [
-                                            const Expanded(
-                                              child: Align(
-                                                alignment: Alignment.centerLeft,
-                                                child: Text(
-                                                  'Phước Hoàng',
-                                                  style: TextStyle(
-                                                      fontFamily: 'Josefin',
-                                                      fontWeight:
-                                                          FontWeight.bold),
-                                                ),
-                                              ),
-                                            ),
-                                            Expanded(
-                                              child: Container(
-                                                padding: EdgeInsets.only(
-                                                    right: 20.w),
-                                                child: Align(
-                                                  alignment:
-                                                      Alignment.centerRight,
-                                                  child: Container(
-                                                    decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10.0),
-                                                      color: Colors.grey
-                                                          .withOpacity(0.4),
+                          children: list_cmt.map((cmt) {
+                            return Builder(builder: (BuildContext context) {
+                              return Column(
+                                children: [
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        flex: 0,
+                                        child: ClipOval(
+                                            child: Image.asset(
+                                          cmt.img,
+                                          fit: BoxFit.cover,
+                                          width: 30.w,
+                                          height: 30.h,
+                                        )),
+                                      ),
+                                      Expanded(
+                                        flex: 4,
+                                        child: Padding(
+                                          padding: EdgeInsets.only(left: 10.w),
+                                          child: Column(
+                                            children: [
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                children: [
+                                                   Expanded(
+                                                    child: Align(
+                                                      alignment:
+                                                          Alignment.centerLeft,
+                                                      child: Text(
+                                                        cmt.name,
+                                                        style: const TextStyle(
+                                                            fontFamily:
+                                                                'Josefin',
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
+                                                      ),
                                                     ),
-                                                    child: Padding(
-                                                      padding:
-                                                          EdgeInsets.all(5.w),
-                                                      child: FittedBox(
-                                                        fit: BoxFit.cover,
-                                                        child: Row(
-                                                          children: [
-                                                            const Icon(
-                                                              Icons.star,
-                                                              color:
-                                                                  Colors.yellow,
-                                                              size: 10,
+                                                  ),
+                                                  Expanded(
+                                                    child: Container(
+                                                      padding: EdgeInsets.only(
+                                                          right: 20.w),
+                                                      child: Align(
+                                                        alignment: Alignment
+                                                            .centerRight,
+                                                        child: Container(
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        10.0),
+                                                            color: Colors.grey
+                                                                .withOpacity(
+                                                                    0.4),
+                                                          ),
+                                                          child: Padding(
+                                                            padding:
+                                                                EdgeInsets.all(
+                                                                    5.w),
+                                                            child: FittedBox(
+                                                              fit: BoxFit.cover,
+                                                              child: Row(
+                                                                children: [
+                                                                  const Icon(
+                                                                    Icons.star,
+                                                                    color: Colors
+                                                                        .yellow,
+                                                                    size: 10,
+                                                                  ),
+                                                                  SizedBox(
+                                                                    width: 5.w,
+                                                                  ),
+                                                                  Text(
+                                                                    cmt.rate.toString(),
+                                                                    style: const TextStyle(
+                                                                        color: Colors
+                                                                            .black,
+                                                                        fontWeight:
+                                                                            FontWeight.bold),
+                                                                  )
+                                                                ],
+                                                              ),
                                                             ),
-                                                            SizedBox(
-                                                              width: 5.w,
-                                                            ),
-                                                            Text(
-                                                              item.star,
-                                                              style: const TextStyle(
-                                                                  color: Colors
-                                                                      .black,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold),
-                                                            )
-                                                          ],
+                                                          ),
                                                         ),
                                                       ),
                                                     ),
                                                   ),
-                                                ),
+                                                ],
                                               ),
-                                            ),
-                                          ],
-                                        ),
-                                        Container(
-                                          padding: EdgeInsets.only(right: 10.w),
-                                          child: const Align(
-                                            alignment: Alignment.centerLeft,
-                                            child: Text(
-                                              'Quán này đồ ăn rất ngon, vừa rẻ. Vệ sinh sạch sẽ',
-                                              style: TextStyle(
-                                                  fontFamily: 'Josefin',
-                                                  color: Colors.grey),
-                                            ),
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                            SizedBox(
-                              height: 10.h,
-                            ),
-                            Row(
-                              children: [
-                                Expanded(
-                                  flex: 0,
-                                  child: ClipOval(
-                                      child: Image.asset(
-                                    'assets/images/avatar2.webp',
-                                    fit: BoxFit.cover,
-                                    width: 30.w,
-                                    height: 30.h,
-                                  )),
-                                ),
-                                Expanded(
-                                  flex: 4,
-                                  child: Padding(
-                                    padding: EdgeInsets.only(left: 10.w),
-                                    child: Column(
-                                      children: [
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          children: [
-                                            const Expanded(
-                                              child: Align(
-                                                alignment: Alignment.centerLeft,
-                                                child: Text(
-                                                  'Mai Long',
-                                                  style: TextStyle(
-                                                      fontFamily: 'Josefin',
-                                                      fontWeight:
-                                                          FontWeight.bold),
-                                                ),
-                                              ),
-                                            ),
-                                            Expanded(
-                                              child: Container(
+                                              Container(
                                                 padding: EdgeInsets.only(
-                                                    right: 20.w),
+                                                    right: 10.w),
                                                 child: Align(
                                                   alignment:
-                                                      Alignment.centerRight,
-                                                  child: Container(
-                                                    decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10.0),
-                                                      color: Colors.grey
-                                                          .withOpacity(0.4),
-                                                    ),
-                                                    child: Padding(
-                                                      padding:
-                                                          EdgeInsets.all(5.w),
-                                                      child: FittedBox(
-                                                        fit: BoxFit.cover,
-                                                        child: Row(
-                                                          children: [
-                                                            const Icon(
-                                                              Icons.star,
-                                                              color:
-                                                                  Colors.yellow,
-                                                              size: 10,
-                                                            ),
-                                                            SizedBox(
-                                                              width: 5.w,
-                                                            ),
-                                                            Text(
-                                                              item.star,
-                                                              style: const TextStyle(
-                                                                  color: Colors
-                                                                      .black,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold),
-                                                            )
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ),
+                                                      Alignment.centerLeft,
+                                                  child: Text(
+                                                    cmt.cmt,
+                                                    style: const TextStyle(
+                                                        fontFamily: 'Josefin',
+                                                        color: Colors.grey),
                                                   ),
                                                 ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        Container(
-                                          padding: EdgeInsets.only(right: 10.w),
-                                          child: const Align(
-                                            alignment: Alignment.centerLeft,
-                                            child: Text(
-                                              'Quán này vệ sinh sạch sẽ, vừa ngon, bổ, rẻ. Mình sẽ tiếp tục ủng hộ quán này.',
-                                              style: TextStyle(
-                                                  fontFamily: 'Josefin',
-                                                  color: Colors.grey),
-                                            ),
+                                              )
+                                            ],
                                           ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                            SizedBox(
-                              height: 10.h,
-                            ),
-                            Row(
-                              children: [
-                                Expanded(
-                                  flex: 0,
-                                  child: ClipOval(
-                                      child: Image.asset(
-                                    'assets/images/avatar3.jpg',
-                                    fit: BoxFit.cover,
-                                    width: 30.w,
-                                    height: 30.h,
-                                  )),
-                                ),
-                                Expanded(
-                                  flex: 4,
-                                  child: Padding(
-                                    padding: EdgeInsets.only(left: 10.w),
-                                    child: Column(
-                                      children: [
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          children: [
-                                            const Expanded(
-                                              child: Align(
-                                                alignment: Alignment.centerLeft,
-                                                child: Text(
-                                                  'Đông Lê',
-                                                  style: TextStyle(
-                                                      fontFamily: 'Josefin',
-                                                      fontWeight:
-                                                          FontWeight.bold),
-                                                ),
-                                              ),
-                                            ),
-                                            Expanded(
-                                              child: Container(
-                                                padding: EdgeInsets.only(
-                                                    right: 20.w),
-                                                child: Align(
-                                                  alignment:
-                                                      Alignment.centerRight,
-                                                  child: Container(
-                                                    decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10.0),
-                                                      color: Colors.grey
-                                                          .withOpacity(0.4),
-                                                    ),
-                                                    child: Padding(
-                                                      padding:
-                                                          EdgeInsets.all(5.w),
-                                                      child: FittedBox(
-                                                        fit: BoxFit.cover,
-                                                        child: Row(
-                                                          children: [
-                                                            const Icon(
-                                                              Icons.star,
-                                                              color:
-                                                                  Colors.yellow,
-                                                              size: 10,
-                                                            ),
-                                                            SizedBox(
-                                                              width: 5.w,
-                                                            ),
-                                                            Text(
-                                                              item.star,
-                                                              style: const TextStyle(
-                                                                  color: Colors
-                                                                      .black,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold),
-                                                            )
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ],
                                         ),
-                                        Container(
-                                          padding: EdgeInsets.only(right: 10.w),
-                                          child: const Align(
-                                            alignment: Alignment.centerLeft,
-                                            child: Text(
-                                              'Chỉ một từ thôi Đỉnh.',
-                                              style: TextStyle(
-                                                  fontFamily: 'Josefin',
-                                                  color: Colors.grey),
-                                            ),
-                                          ),
-                                        )
-                                      ],
-                                    ),
+                                      )
+                                    ],
                                   ),
-                                )
-                              ],
-                            ),
-                          ],
+                                  SizedBox(
+                                    height: 10.h,
+                                  ),
+                                ],
+                              );
+                            });
+                          }).toList(),
                         ),
                       ),
                     ],
@@ -718,7 +534,12 @@ class _ShopPageState extends State<ShopPage> {
                   color: Color.fromARGB(255, 86, 99, 255),
                 ),
                 child: TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: ((context) => const ReviewPage())));
+                    },
                     child: const Center(
                       child: Text(
                         'Rate Your Experience',

@@ -1,7 +1,11 @@
+import 'dart:async';
+
 import 'package:fitted_gridview/fitted_gridview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_app/model/shop.dart';
+import 'package:food_app/widget/Overlay.dart';
+import 'package:swipe_image_gallery/swipe_image_gallery.dart';
 
 class GridViewImage extends StatefulWidget {
   const GridViewImage({super.key, required this.images});
@@ -13,11 +17,24 @@ class GridViewImage extends StatefulWidget {
 
 class _GridViewImageState extends State<GridViewImage> {
   late List images;
+  List<Widget> images_widget = [];
+  StreamController<Widget> overlayController =
+      StreamController<Widget>.broadcast();
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     images = widget.images;
+    for (var item in images) {
+      images_widget.add(Image(image: AssetImage(item)));
+    }
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    overlayController.close();
   }
 
   @override
@@ -72,9 +89,31 @@ class _GridViewImageState extends State<GridViewImage> {
                         padding: const EdgeInsets.all(4.0),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(15.0),
-                          child: Image.asset(
-                            images[index],
-                            fit: BoxFit.cover,
+                          child: InkWell(
+                            onTap: () {
+                              SwipeImageGallery(
+                                context: context,
+                                children: images_widget,
+                                onSwipe: (index) {
+                                  overlayController.add(OverlayExample(
+                                    title:
+                                        '${index + 1}/${images_widget.length}',
+                                  ));
+                                },
+                                overlayController: overlayController,
+                                initialOverlay: OverlayExample(
+                                  title: '${index + 1}/${images_widget.length}',
+                                ),
+                                initialIndex: index
+                              ).show();
+                            },
+                            child: Hero(
+                              tag: images[index],
+                              child: Image.asset(
+                                images[index],
+                                fit: BoxFit.cover,
+                              ),
+                            ),
                           ),
                         ),
                       );

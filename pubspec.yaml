@@ -39,6 +39,10 @@ dependencies:
   carousel_slider: ^4.2.1
   avatar_stack: ^1.2.0
   fitted_gridview: ^1.0.0
+  animated_introduction: ^1.0.4
+  introduction_screen: ^3.1.11
+  swipe_image_gallery: ^0.8.3
+  smooth_page_indicator: ^1.1.0
 
 dev_dependencies:
   flutter_test:
