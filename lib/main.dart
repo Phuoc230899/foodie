@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:food_app/home.dart';
 
 import 'package:food_app/screen/firt_page.dart';
 import 'package:food_app/screen/shop_category.dart';
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
             theme: ThemeData(
               primaryColor: Colors.white,
             ),
-            home: const ShopCategory());
+            home: const FirstPage());
       },
     );
   }

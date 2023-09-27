@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_app/model/category.dart';
+import 'package:food_app/screen/shop_category.dart';
 
 class ListCategory extends StatefulWidget {
   const ListCategory({super.key});
@@ -17,8 +18,8 @@ class _ListCategoryState extends State<ListCategory> {
     return Scaffold(
       body: SafeArea(
           child: SingleChildScrollView(
-            child: Column(
-                  children: [
+        child: Column(
+          children: [
             Row(
               children: [
                 Expanded(
@@ -67,8 +68,8 @@ class _ListCategoryState extends State<ListCategory> {
               child: Column(
                   children: list_category.map((cat) {
                 return Builder(builder: (BuildContext context) {
-                  return Column(
-                    children:[ SizedBox(
+                  return Column(children: [
+                    SizedBox(
                       width: MediaQuery.of(context).size.width,
                       height: 60.h,
                       child: Stack(children: [
@@ -83,37 +84,46 @@ class _ListCategoryState extends State<ListCategory> {
                         ),
                         BackdropFilter(
                           filter: ImageFilter.blur(sigmaX: 0, sigmaY: 0),
-                          child: Container(
-                            width: MediaQuery.of(context).size.width,
-                            height: 60.h,
-                            decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                  colors: cat.colors,
-                                  begin: Alignment.centerLeft,
-                                  end: Alignment.centerRight,
-                                ),
-                                borderRadius: BorderRadius.circular(10.0)),
-                            child: Center(
-                                child: Text(
-                              cat.name,
-                              style: const TextStyle(
-                                  fontFamily: 'Josefin',
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white),
-                            )),
+                          child: InkWell(
+                            onTap: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ShopCategory(
+                                          index: cat.id,
+                                        ))),
+                            child: Container(
+                              width: MediaQuery.of(context).size.width,
+                              height: 60.h,
+                              decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                    colors: cat.colors,
+                                    begin: Alignment.centerLeft,
+                                    end: Alignment.centerRight,
+                                  ),
+                                  borderRadius: BorderRadius.circular(10.0)),
+                              child: Center(
+                                  child: Text(
+                                cat.name,
+                                style: const TextStyle(
+                                    fontFamily: 'Josefin',
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white),
+                              )),
+                            ),
                           ),
                         )
                       ]),
                     ),
-                    SizedBox(height: 15.h,)
-                    ]
-                  );
+                    SizedBox(
+                      height: 15.h,
+                    )
+                  ]);
                 });
               }).toList()),
             )
-                  ],
-                ),
-          )),
+          ],
+        ),
+      )),
     );
   }
 }

@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_app/model/shop.dart';
 import 'package:food_app/screen/filter_page.dart';
+import 'package:food_app/screen/friends.dart';
 import 'package:food_app/screen/list_category.dart';
 import 'package:food_app/screen/list_shop.dart';
 import 'package:food_app/screen/shop_detail.dart';
@@ -173,7 +174,7 @@ class _HomeState extends State<Home> {
                                     flex: 2,
                                     child: Stack(children: [
                                       Hero(
-                                        tag: item.imageUrl,
+                                        tag: item.id,
                                         child: ClipPath(
                                           clipper: MyClipper(),
                                           child: Image.asset(
@@ -584,15 +585,21 @@ class _HomeState extends State<Home> {
                 SizedBox(
                   width: 170.w,
                 ),
-                const Align(
+                Align(
                   alignment: Alignment.centerRight,
-                  child: Text(
-                    'See all (36)',
-                    style: TextStyle(
-                        fontFamily: 'Josefin',
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.grey),
+                  child: InkWell(
+                    onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const FriendsPage())),
+                    child: const Text(
+                      'See all (36)',
+                      style: TextStyle(
+                          fontFamily: 'Josefin',
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey),
+                    ),
                   ),
                 ),
               ],

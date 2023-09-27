@@ -167,7 +167,7 @@ class _ShopsState extends State<Shops> {
                                                   flex: 2,
                                                   child: Stack(children: [
                                                     Hero(
-                                                      tag: item.imageUrl,
+                                                      tag: item.id,
                                                       child: ClipPath(
                                                         clipper: MyClipper(),
                                                         child: Image.asset(

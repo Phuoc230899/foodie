@@ -108,7 +108,7 @@ class _GridViewImageState extends State<GridViewImage> {
                               ).show();
                             },
                             child: Hero(
-                              tag: images[index],
+                              tag: index,
                               child: Image.asset(
                                 images[index],
                                 fit: BoxFit.cover,
