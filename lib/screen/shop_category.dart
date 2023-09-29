@@ -56,6 +56,7 @@ class _ShopCategoryState extends State<ShopCategory>
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView(
+        physics: const NeverScrollableScrollPhysics(),
         children: [
           Stack(children: [
             ClipRRect(
